@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KTF Crew | Street art | Esto es Calle, esto es Clicka</title>
+    <link rel="stylesheet" href="../main.css" />
+    <link rel="stylesheet" href="../styles/index.css" />
+    <link rel="stylesheet" href="../styles/work-sample.css" />
+  </head>
+  <body>
+    <div class="menu-toggle">
+      <div class="toggle-icon">
+        <span>+</span>
+      </div>
+    </div>
+    <div class="menu">
+      <div class="menu-link">
+        <a href="../index.html">Inicio</a><span>+</span>
+      </div>
+      <div class="menu-link">
+        <a href="./work.html">Galeria</a><span>+</span>
+      </div>
+      <div class="menu-link">
+        <a href="./about.html">Nosotros</a><span>+</span>
+      </div>
+      <div class="menu-link">
+        <a href="./contact.html">Contact</a><span>+</span>
+      </div>
+      <!-- <div class="menu-link">
+        <a href="./careers.html">Careers</a><span>+</span>
+      </div> -->
+    </div>
+    <div class="container">
+      <div class="header">
+        <div class="hero-logo">
+          <a href="../index.html">KTF</a>
+        </div>
+      </div>
+
+      <div class="work-video">
+        <div class="video-wrapper">
+          <div class="video-container" id="video-container">
+            <!-- Reemplazar el video con iframe -->
+            <iframe
+              width="1400"
+              height="600"
+              src="https://www.youtube.com/embed/SZQDNQaL-8M"
+              title="KTF CREW - Tucuman Graffiti 2"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+      </div>
+
+      <div class="article-copy" id="article-work-copy">
+        <div class="article-title">
+          <p><a href="https://www.youtube.com/@codegrid">Tucuman Graffiti 2</a></p>
+          <span>(Est 2014)</span>
+        </div>
+        <div class="article-text">
+          <h3>Verdadero street art • 2014</h3>
+          <div class="collapsible slow">
+            <p>
+              Muchos de los graffitis que se grabaron en el video ya no existen,
+              paredes que fueron demolidas y reconstruidas. La casa abandonada
+              ahora es un estacionamiento de vehiculos.
+            </p>
+          </div>
+
+          <div class="article-link toggler">
+            <a>Leer mas</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-images">
+        <div class="img-row">
+          <div class="i-col">
+            <div class="project-img">
+              <img src="../assets/home/article-1.jpg" alt="" />
+            </div>
+          </div>
+          <div class="i-col">
+            <div class="project-img">
+              <img src="../assets/work/project-10.jpg" alt="" />
+            </div>
+          </div>
+        </div>
+
+        <div class="img-row">
+          <div class="project-img">
+            <img src="../assets/work/project-9.jpg" alt="" />
+          </div>
+        </div>
+
+        <div class="img-row">
+          <div class="i-col">
+            <div class="project-img">
+              <img src="../assets/work/13613459715_e547868706_o.jpg" alt="" />
+            </div>
+          </div>
+          <div class="i-col">
+            <div class="project-img">
+              <img src="../assets/work/13613457763_ccc2527754_o.jpg" alt="" />
+            </div>
+          </div>
+        </div>
+
+        <div class="img-row">
+          <div class="project-img">
+            <img src="../assets/work/13613469373_cf776f4f2d_o.jpg" alt="" />
+          </div>
+        </div>
+      </div>
+
+      <div class="work-page">
+        <h1><a href="work.html">Ver galeria</a></h1>
+      </div>
+
+      <footer>
+        <p>&copy; strictly gangsters 2024</p>
+        <p id="address">219 Barrio Sur, Tucuman &mdash; Argentina, coast to coast.</p>
+        <p><a href="https://www.instagram.com/">Instagram</a></p>
+      </footer>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="../script.js"></script>
+    <script>
+      const video = document.getElementById("video");
+      const circlePlayButton = document.getElementById("circle-play-b");
+
+      function togglePlay() {
+        if (video.paused || video.ended) {
+          video.play();
+        } else {
+          video.pause();
+        }
+      }
+
+      circlePlayButton.addEventListener("click", togglePlay);
+      video.addEventListener("playing", function () {
+        circlePlayButton.style.opacity = 0;
+      });
+      video.addEventListener("pause", function () {
+        circlePlayButton.style.opacity = 1;
+      });
+
+      const getContainerHeight = (el) =>
+        window.getComputedStyle(el).getPropertyValue("height");
+
+      document.querySelectorAll(".collapsible.slow").forEach((current) => {
+        // Get the toggler that's directly below the current collapsible element.
+        let toggler = current.nextElementSibling.querySelector("a");
+
+        current.dataset.initial = getContainerHeight(current);
+
+        current.classList.add("open");
+        current.dataset.final = getContainerHeight(current);
+        current.classList.remove("open");
+
+        current.style.height = current.dataset.initial;
+        current.classList.add("ready");
+
+        toggler.addEventListener(
+          "click",
+          (e) => {
+            const isOpen = current.classList.toggle("open");
+            current.style.height = isOpen
+              ? current.dataset.final
+              : current.dataset.initial;
+
+            // Change text of the toggler based on the state.
+            toggler.textContent = isOpen ? "Read Less" : "Read More";
+          },
+          false
+        );
+      });
+    </script>
+  </body>
+</html>
